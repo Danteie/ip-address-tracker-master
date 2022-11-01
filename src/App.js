@@ -3,7 +3,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>GPS</h1>
+      <div>TOP</div>
+      <div>Middle</div>
+      <div>MAP</div>
     </div>
   );
 }
