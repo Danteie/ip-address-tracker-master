@@ -1,6 +1,7 @@
 import './App.css';
 import arrow from '../src/Assetes/icon-arrow.svg'
 import { MapContainer, TileLayer, useMap,Marker,Popup } from 'react-leaflet'
+import { Icon } from "leaflet";
 import 'leaflet/dist/leaflet.css';
 
 function App() {
