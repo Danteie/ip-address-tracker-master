@@ -28,14 +28,12 @@
     background-color: white;
     border-radius: 15px;
     padding: 1rem;
+    bottom: 40px;
+}
+
+.maps{
+    height: 100%;
+    width: 100%;
 }
 
 
-.Map{
-    position: relative;
-    height: 50rem;
-    
-    background-color: red;
-}
-
-#map { height: 80rem; }
