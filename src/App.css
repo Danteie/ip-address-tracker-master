@@ -22,18 +22,45 @@
     border: 0;
 }
 
+input{
+    width: 30rem;
+    height: 2rem;
+    border-radius: 20px 0 0px 20px;
+    border: none;
+    padding: 10px;
+}
+
+button{
+    height: 3.5rem;
+    width: 4rem;
+    border-radius: 0px 20px 20px 0px;
+}
+
 .data{
     display: flex;
     position: relative;
     background-color: white;
+    padding: 2rem;
     border-radius: 15px;
-    padding: 1rem;
-    bottom: 40px;
+    position: relative;
+    top: 75px;
+    z-index: 3;
+    gap: 2rem;
 }
 
 .maps{
     height: 100%;
     width: 100%;
+    z-index: 1;
+}
+
+.vertical{
+    border-right: 2px solid rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+}
+
+.last{
+    padding: 1rem;
 }
 
 
