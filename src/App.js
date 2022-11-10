@@ -2,14 +2,27 @@ import './App.css';
 import arrow from '../src/Assetes/icon-arrow.svg'
 import { MapContainer, TileLayer, useMap,Marker,Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
+import React, { useState, useEffect } from 'react';
 
 function App() {
 
-
+  const [ip, setIp] = useState();
 
   function textEdit(event){
     console.log(event);
   }
+
+  useEffect(() => {
+
+  
+    fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => setIp(data))
+  
+
+  console.log(ip);
+
+  }, [ip]);
 
 
 
@@ -20,14 +33,14 @@ function App() {
         <h1>IP Address Tracker</h1>
         <div>
           <input type='text' onChange={textEdit} placeholder='Search for any IP address or domain'/>
-          <button className='top-button' ><img src={arrow}/></button>
+          <button className='top-button'><img src={arrow}/></button>
         </div>
 
 
         <div className='data'>
         <div className='vertical'>
           <div>IP ADDRESS</div>
-          <div>192.212.174.101</div>
+          <div></div>
         </div>
         <></>
         <div className='vertical'>
