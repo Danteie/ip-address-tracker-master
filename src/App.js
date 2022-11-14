@@ -7,22 +7,26 @@ import React, { useState, useEffect } from 'react';
 function App() {
 
   const [ip, setIp] = useState();
+  const [location, setLocation] = useState();
+  const [timeZone, setTimeZone] = useState();
+  const [isp, setIsp] = useState();
 
   function textEdit(event){
     console.log(event);
   }
 
-  useEffect(() => {
-
-  
-    fetch('https://api.ipify.org?format=json')
+ function ipAddres(){
+  fetch('https://geo.ipify.org/api/v2/country?apiKey=at_VVCIM4N5oYRoW5f2BaSi3ZoyczuAj&ipAddress=62.4.34.21')
     .then(response => response.json())
-    .then(data => setIp(data))
-  
-
-  console.log(ip);
-
-  }, [ip]);
+    .then(data => (
+      setIp(data.ip),
+      setLocation(data.location.region),
+      setTimeZone(data.location.timezone),
+      setIsp(data.as.name)
+      ))
+    
+ 
+ }
 
 
 
@@ -33,27 +37,27 @@ function App() {
         <h1>IP Address Tracker</h1>
         <div>
           <input type='text' onChange={textEdit} placeholder='Search for any IP address or domain'/>
-          <button className='top-button'><img src={arrow}/></button>
+          <button className='top-button' onClick={ipAddres}><img src={arrow}/></button>
         </div>
 
 
         <div className='data'>
         <div className='vertical'>
           <div>IP ADDRESS</div>
-          <div></div>
+          <h2>{ip}</h2>
         </div>
         <></>
         <div className='vertical'>
           <div>LOCATION</div>
-          <div>192.212.174.101</div> 
+          <h2>{location}</h2> 
         </div>
         <div className='vertical'>
           <div>TIMEZONES</div>
-          <div>192.212.174.101</div>
+          <h2>{timeZone}</h2>
         </div>
         <div className='last'>
           <div>ISP</div>
-          <div>192.212.174.101</div>
+          <h2>{isp}</h2>
         </div>
       </div>
       </div>
