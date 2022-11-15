@@ -8,21 +8,26 @@ function App() {
 
   const [ip, setIp] = useState();
   const [location, setLocation] = useState();
+  const [locationGeo, setLocationGeo] = useState("37.38605,-122.08385");
   const [timeZone, setTimeZone] = useState();
   const [isp, setIsp] = useState();
+  const [ipSearch, setIpSearch] = useState("8.8.8.8");
 
   function textEdit(event){
-    console.log(event);
+    setIpSearch(ipSearch => ipSearch = event.target.value)
+   
   }
 
  function ipAddres(){
-  fetch('https://geo.ipify.org/api/v2/country?apiKey=at_VVCIM4N5oYRoW5f2BaSi3ZoyczuAj&ipAddress=62.4.34.21')
+  fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_VVCIM4N5oYRoW5f2BaSi3ZoyczuAj&ipAddress=${ipSearch}`)
     .then(response => response.json())
     .then(data => (
       setIp(data.ip),
       setLocation(data.location.region),
+      setLocationGeo(data.location.lat + ',' + data.location.lng),
       setTimeZone(data.location.timezone),
-      setIsp(data.as.name)
+      setIsp(data.as.name),
+      console.log(data)
       ))
     
  
@@ -67,16 +72,14 @@ function App() {
       <div className='maps'>
         
    
-        <MapContainer center={[51.505, -0.09]} zoom={13} >
+        <MapContainer center={[37.38605,-122.08385]} zoom={15} >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[51.505, -0.09]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
+            <Marker position={[37.38605,-122.08385]}/>
+             
+      
           </MapContainer>
       </div>
     </div>
