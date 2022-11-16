@@ -8,7 +8,8 @@ function App() {
 
   const [ip, setIp] = useState();
   const [location, setLocation] = useState();
-  const [locationGeo, setLocationGeo] = useState("37.38605,-122.08385");
+  const [locationGeoLat, setLocationGeoLat] = useState(37.38605);
+  const [locationGeoLng, setLocationGeoLng] = useState(-122.08385);
   const [timeZone, setTimeZone] = useState();
   const [isp, setIsp] = useState();
   const [ipSearch, setIpSearch] = useState("8.8.8.8");
@@ -24,13 +25,11 @@ function App() {
     .then(data => (
       setIp(data.ip),
       setLocation(data.location.region),
-      setLocationGeo(data.location.lat + ',' + data.location.lng),
+      setLocationGeoLat(data.location.lat),
+      setLocationGeoLng(data.location.lng),
       setTimeZone(data.location.timezone),
-      setIsp(data.as.name),
-      console.log(data)
+      setIsp(data.as.name)
       ))
-    
- 
  }
 
 
@@ -66,20 +65,13 @@ function App() {
         </div>
       </div>
       </div>
-
-
-
       <div className='maps'>
-        
-   
-        <MapContainer center={[37.38605,-122.08385]} zoom={15} >
+        <MapContainer center={[locationGeoLat,locationGeoLng]} zoom={13} >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[37.38605,-122.08385]}/>
-             
-      
+            <Marker position={[locationGeoLat,locationGeoLng]}/>
           </MapContainer>
       </div>
     </div>
