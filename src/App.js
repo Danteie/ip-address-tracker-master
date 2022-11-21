@@ -8,8 +8,8 @@ function App() {
 
   const [ip, setIp] = useState();
   const [location, setLocation] = useState();
-  const [locationGeoLat, setLocationGeoLat] = useState(37.38605);
-  const [locationGeoLng, setLocationGeoLng] = useState(-122.08385);
+  const [locationGeoLat, setLocationGeoLat] = useState(50);
+  const [locationGeoLng, setLocationGeoLng] = useState(34);
   const [timeZone, setTimeZone] = useState();
   const [isp, setIsp] = useState();
   const [ipSearch, setIpSearch] = useState("8.8.8.8");
@@ -32,6 +32,19 @@ function App() {
       ))
  }
 
+
+function Map(){
+    return(
+      <MapContainer center={[locationGeoLat,locationGeoLng]} zoom={13}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[locationGeoLat,locationGeoLng]}/>
+          </MapContainer>
+    )
+    }
+    
 
 
   return (
@@ -66,13 +79,7 @@ function App() {
       </div>
       </div>
       <div className='maps'>
-        <MapContainer center={[locationGeoLat,locationGeoLng]} zoom={13} >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[locationGeoLat,locationGeoLng]}/>
-          </MapContainer>
+        <Map/>
       </div>
     </div>
   );
