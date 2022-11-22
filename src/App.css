@@ -11,7 +11,7 @@
 .header{
     background-image: url('../src/Assetes/pattern-bg.png');
     background-size: cover;
-    height: 20rem;
+    height: 17.5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,8 @@
 input{
     width: 30rem;
     height: 2rem;
-    border-radius: 20px 0 0px 20px;
+    font-size: 1.5rem;
+    border-radius: 10px 0 0px 10px;
     border: none;
     padding: 10px;
 }
@@ -36,19 +37,25 @@ input{
 button{
     height: 3.5rem;
     width: 4rem;
+    font-size: 1.5rem;
     border-radius: 0px 20px 20px 0px;
 }
 
 .data{
     display: flex;
+    width: 100%;
     position: relative;
     background-color: white;
     padding: 2rem;
     border-radius: 15px;
-    position: relative;
+    width: 65rem;
     top: 75px;
     z-index: 3;
     gap: 2rem;
+}
+
+.data div{
+    flex: 1;
 }
 
 
@@ -58,13 +65,98 @@ button{
     z-index: 1;
 }
 
-.vertical{
-    border-right: 2px solid rgba(0, 0, 0, 0.3);
-    padding: 1rem;
+
+h1{
+    color: white;
 }
 
-.last{
-    padding: 1rem;
+h2{
+    font-size: 1.6rem;
+    border-right: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 1rem 3rem 1rem 1rem;
+    margin: 0;
+}
+
+h3{
+    margin: 0;
+    opacity: 0.3;
+    font-size: 0.9rem;
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
+
+.last h2{
+    border: none;
 }
 
 
+@media only screen and (max-width: 1100px) {
+
+    .header{
+        background-image: url('../src/Assetes/pattern-bg.png');
+        background-size: cover;
+        height: 20rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .data{
+        display: block;
+        width: 100%;
+        position: relative;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        width: 20rem;
+        top: 100px;
+        z-index: 3;
+        gap: 1rem;
+    }
+
+    h1{
+        color: white;
+        position: relative;
+        top: 60px;
+    }
+
+    
+    h2{
+        font-size: 1.6rem;
+        border-right: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    h3{
+        margin: 0;
+        opacity: 0.3;
+        font-size: 0.9rem;
+        padding-top: 1rem;
+        padding-left: 0;
+    }
+
+    input{
+        width: 19rem;
+        height: 2rem;
+        font-size: 1rem;
+        border-radius: 20px 0 0px 20px;
+        border: none;
+        padding: 10px;
+        position: relative;
+    }
+
+    .inputDiv{
+        position: relative;
+        top: 60px;
+    }
+
+    button{
+        height: 3.5rem;
+        width: 4rem;
+        font-size: 1.4rem;
+        border-radius: 0px 20px 20px 0px;
+    }
+  }

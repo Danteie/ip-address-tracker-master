@@ -3,15 +3,20 @@ import arrow from '../src/Assetes/icon-arrow.svg'
 import { MapContainer, TileLayer, useMap,Marker,Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import React, { useState, useEffect } from 'react';
+import { icon } from "leaflet";
+import L from 'leaflet';
+import marker from '../src/Assetes/icon-location.svg'
+
+
 
 function App() {
 
-  const [ip, setIp] = useState();
-  const [location, setLocation] = useState();
+  const [ip, setIp] = useState('8.8.8.8');
+  const [location, setLocation] = useState('Brooklyn,NY');
   const [locationGeoLat, setLocationGeoLat] = useState(50);
   const [locationGeoLng, setLocationGeoLng] = useState(34);
-  const [timeZone, setTimeZone] = useState();
-  const [isp, setIsp] = useState();
+  const [timeZone, setTimeZone] = useState("UTC -05:00");
+  const [isp, setIsp] = useState('SpaceX');
   const [ipSearch, setIpSearch] = useState("8.8.8.8");
 
   function textEdit(event){
@@ -27,20 +32,24 @@ function App() {
       setLocation(data.location.region),
       setLocationGeoLat(data.location.lat),
       setLocationGeoLng(data.location.lng),
-      setTimeZone(data.location.timezone),
+      setTimeZone("UTC " + data.location.timezone),
       setIsp(data.as.name)
       ))
  }
 
 
+ const iconPerson = new L.Icon({
+  iconUrl: marker
+});
+
 function Map(){
     return(
-      <MapContainer center={[locationGeoLat,locationGeoLng]} zoom={13}>
+      <MapContainer center={[locationGeoLat,locationGeoLng]} zoom={13}> 
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[locationGeoLat,locationGeoLng]}/>
+            <Marker  position={[locationGeoLat,locationGeoLng]} icon={iconPerson}/>
           </MapContainer>
     )
     }
@@ -52,30 +61,34 @@ function Map(){
     <div className="App">
       <div className='header'>
         <h1>IP Address Tracker</h1>
-        <div>
+        <div className='inputDiv'>
           <input type='text' onChange={textEdit} placeholder='Search for any IP address or domain'/>
           <button className='top-button' onClick={ipAddres}><img src={arrow}/></button>
         </div>
 
 
         <div className='data'>
+          
         <div className='vertical'>
-          <div>IP ADDRESS</div>
+          <h3>IP ADDRESS</h3>
           <h2>{ip}</h2>
         </div>
-        <></>
+
         <div className='vertical'>
-          <div>LOCATION</div>
+          <h3>LOCATION</h3>
           <h2>{location}</h2> 
         </div>
+
         <div className='vertical'>
-          <div>TIMEZONES</div>
+          <h3>TIMEZONES</h3>
           <h2>{timeZone}</h2>
         </div>
+
         <div className='last'>
-          <div>ISP</div>
+          <h3>ISP</h3>
           <h2>{isp}</h2>
         </div>
+
       </div>
       </div>
       <div className='maps'>
